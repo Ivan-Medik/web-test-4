@@ -1,0 +1,24 @@
+{% extends 'blog\base_blog.html' %}
+
+{% block title %}
+    Blog engine
+{% endblock %}
+
+{% block content %}
+  <h1 class="mb-5">Posts:</h1>
+  {% for post in posts %}
+    <div class="card">
+      <div class="card-header">
+        {{ post.date_pub }}
+        {% if new %}
+          <span class="badge badge-secondary">New</span>
+        {% endif %}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <p class="card-text">{{ post.body|truncatewords:20 }}</p>
+        <a href="{{ post.get_absolute_url }}" class="btn btn-primary">Read</a>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}
